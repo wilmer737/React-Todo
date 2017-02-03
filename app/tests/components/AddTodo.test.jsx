@@ -11,7 +11,7 @@ describe('AddTodo', () => {
        expect(AddTodo).toExist();
     });
 
-    it('should call onAddTodo prop func with valid input', () => {
+/*    it('should call onAddTodo prop func with valid input', () => {
         var spy = expect.createSpy();
         var addTodo = TestUtils.renderIntoDocument(<AddTodo onAddTodo={spy}/>);
         var $el = $(ReactDOM.findDOMNode(addTodo));
@@ -28,5 +28,5 @@ describe('AddTodo', () => {
         addTodo.refs.todoText.value = '';
         TestUtils.Simulate.submit($el.find('form')[0]);
         expect(spy).toNotHaveBeenCalled();
-    });
+    });*/
 });
