@@ -9,8 +9,13 @@ describe('Actions', () => {
     });
 
     it('should generate add todo action', () => {
-        var action = {type: 'ADD_TODO', text: 'go to movies'};
-        var res = actions.addTodo(action.text);
+        var action = {type: 'ADD_TODO', todo: {
+            id: 123,
+            text: 'anything',
+            completed: false,
+            createdAt: 23,
+        }};
+        var res = actions.addTodo(action.todo);
         expect(res).toEqual(action);
     });
 
