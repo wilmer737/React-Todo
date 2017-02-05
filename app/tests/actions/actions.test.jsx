@@ -1,4 +1,5 @@
 var expect = require('expect');
+import firebase, {firebaseRef} from 'app/firebase/';
 var actions = require('actions');
 
 describe('Actions', () => {
@@ -45,9 +46,27 @@ describe('Actions', () => {
         expect(res).toEqual(action);
     });
 
-    it('should generate toggle todo action', () => {
-        var action = {type: 'TOGGLE_TODO', id: 1};
-        var res = actions.toggleTodo(action.id);
+    it('should generate update todo action', () => {
+        var action = {type: 'UPDATE_TODO', id: 1, updates: {completed: false}};
+        var res = actions.updateTodo(action.id, action.updates);
         expect(res).toEqual(action);
+    });
+
+    describe('test with firebase todos', () => {
+        var testTodoRef;
+
+        beforeEach((done) => {
+            testTodoRef = firebaseRef.child('todos').push();
+
+            testTodoRef.set({
+                text: 'something fake',
+                completed: false,
+                createdAt: 32432,
+            }).then(() => done());
+        });
+
+        afterEach((done) => {
+            testTodoRef.remove().then(() => done())
+        });
     });
 });
